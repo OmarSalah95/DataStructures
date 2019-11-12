@@ -23,17 +23,19 @@ class BinarySearchTree:
                 break
             else:
                 self = self.right
-            # The recursive version below also works.
-            
-            
-            # if value < self.value and self.left is None:
-            #   self.left = BinarySearchTree(value)
-            # elif value < self.value and self.left is not None:
-            #   self.left.insert(value)
-            # elif value >= self.value and self.right is None:
-            #   self.right = BinarySearchTree(value)
-            # else:
-            #   self.right.insert(value)
+        # The recursive version below also works.
+        # greater values become right child
+        # if self.value <= value:
+        #     if self.right:
+        #         self.right.insert(value)
+        #     else:
+        #         self.right = BinarySearchTree(value)
+        # # less than or equal values become left child
+        # else:
+        #     if self.left:
+        #         self.left.insert(value)
+        #     else:
+        #         self.left = BinarySearchTree(value)
 
     # Return True if the tree contains the value
     # False if it does not   
@@ -52,11 +54,9 @@ class BinarySearchTree:
 
     # Return the maximum value found in the tree
     def get_max(self):
-        while self:
-            if self.right is None:
-                return self.value
-            else:
-                self = self.right
+        while self.right:
+            self = self.right
+        return self.value
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
