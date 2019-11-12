@@ -24,10 +24,10 @@ class CacheTests(unittest.TestCase):
         self.assertEqual(self.cache.get('item1'), 'a')
         self.cache.set('item4', 'd') # [{4:d}, {3:c}, {2:b}]
 
-        self.assertEqual(self.cache.get('item1'), 'a') # This should Fail
-        self.assertEqual(self.cache.get('item3'), 'c') # This is Golden
-        self.assertEqual(self.cache.get('item4'), 'd') # This is golden 
-        self.assertIsNone(self.cache.get('item2')) # This and Item 1 are where I am so dang Confused
+        self.assertEqual(self.cache.get('item1'), 'a')  # [{1:a}, {4:d}, {3:c}]
+        self.assertEqual(self.cache.get('item3'), 'c')  # [{3:c}, {1:a}, {4:d}]
+        self.assertEqual(self.cache.get('item4'), 'd')  # [{4:d}, {1:a}, {3:c}]
+        self.assertIsNone(self.cache.get('item2')) 
 
         """So if I am able to retrieve item 1 which is in my dictionairy and not my cache, yet I am unable to retrieve item 2 which should be in both my dictionary and my cache"""
 

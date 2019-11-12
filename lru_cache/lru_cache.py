@@ -26,7 +26,7 @@ class LRUCache:
         else:
             new_node = DoublyLinkedList(value)
             if len(self.list) >= self.limit:
-                self.dict.pop(list(self.dict.keys())[-1])
+                self.dict.pop(list(self.dict.keys())[1])
                 self.list.remove_from_tail()
             self.list.add_to_head(new_node)
             self.dict[key] = new_node
