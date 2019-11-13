@@ -39,14 +39,32 @@ class AVLTree:
     Computes the maximum number of levels there are
     in the tree
     """
-    def update_height(self):
-        pass
+    def update_height(self, recursive = True):
+        if self.node:
+            if recursive:
+                if self.node.left:
+                    self.node.left.update_height()
+                if self.node.right:
+                    self.node.right.update_height()
+            self.height = 1 + max(self.node.left.height, self.node.right.height)
+        else:
+            self.height = -1
 
     """
     Updates the balance factor on the AVLTree class
     """
-    def update_balance(self):
-        pass
+    def update_balance(self, recursive = True):
+        if self.node:
+            if recursive:
+                if self.node.left:
+                    self.node.left.update_balance()
+                if self.node.right:
+                    self.node.right.update_balance()
+
+            self.balance = self.node.left.height - self.node.right.height
+        else:
+            self.balance = 0
+
 
     """
     Perform a left rotation, making the right child of this
