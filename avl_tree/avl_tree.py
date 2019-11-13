@@ -46,7 +46,11 @@ class AVLTree:
                     self.node.left.update_height()
                 if self.node.right:
                     self.node.right.update_height()
-            self.height = 1 + max(self.node.left.height, self.node.right.height)
+            
+            self.height = 1 + max(
+                self.node.left.height if self.node.left else -1, 
+                self.node.right.height if self.node.right else -1
+            )
         else:
             self.height = -1
 
